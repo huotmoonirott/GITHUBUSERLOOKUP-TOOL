@@ -42,7 +42,7 @@ while True:
         data = response.json()
 
         # ────────────────────────────────────────────────
-        # Main profile table (unchanged)
+        # Main profile table
         table = Table(show_header=False, expand=True, border_style="bright_blue", padding=(0, 1))
         table.add_column("Field", style="bold cyan", width=20)
         table.add_column("Value", style="white")
@@ -72,7 +72,7 @@ while True:
         ))
 
         # ────────────────────────────────────────────────
-        # NEW: List all public repository names + star count
+        #List all public repository names + star count
         console.print("\n[bold cyan]Public Repositories (Name & Stars):[/]")
 
         repos = []
@@ -83,7 +83,7 @@ while True:
                 params = {
                     "per_page": 100,
                     "page": page,
-                    "sort": "updated",          # most recent first (you can change to "created", "pushed", etc.)
+                    "sort": "updated",          
                     "direction": "desc"
                 }
                 repo_response = requests.get(repo_url, params=params, timeout=10)
@@ -117,7 +117,7 @@ while True:
             console.print(f"\n[dim italic]Total public repositories: {len(repos)}[/]")
 
         # ────────────────────────────────────────────────
-        # Avatar preview (unchanged)
+        # Avatar preview
         avatar = data.get('avatar_url')
         if avatar:
             try:
@@ -138,4 +138,5 @@ while True:
         console.print("[dim]─" * 70 + "\n")
 
     else:
+
         console.print("[bold red]User not found.[/] Try another username. 😕\n")
